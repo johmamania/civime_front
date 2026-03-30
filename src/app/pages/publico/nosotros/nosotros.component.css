@@ -1,0 +1,88 @@
+:host {
+  display: block;
+}
+
+.nosotros-page {
+  padding-top: 50px;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-bottom: 3rem;
+  box-sizing: border-box;
+}
+
+.nosotros-page .container {
+  width: 100%;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.nosotros-hero {
+  background: linear-gradient(135deg, #dbeafe, #f0f9ff 55%, #ecfeff);
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0;
+  border-radius: 0.85rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nosotros-eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1d4ed8;
+}
+
+.nosotros-hero h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.nosotros-lead {
+  margin: 0 auto;
+  max-width: 36rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  color: #334155;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.nosotros-sections {
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 1.75rem);
+  justify-items: center;
+}
+
+.nosotros-card {
+  scroll-margin-top: 5.5rem;
+  width: 100%;
+  max-width: 42rem;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border-radius: 0.85rem;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+  text-align: center;
+}
+
+.nosotros-card--alt {
+  border-color: #bfdbfe;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+}
+
+.nosotros-card h2 {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+  color: #0f172a;
+}
+
+.nosotros-card p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.65;
+  font-size: 1rem;
+}

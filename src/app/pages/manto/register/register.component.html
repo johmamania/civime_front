@@ -1,0 +1,181 @@
+<mat-card class="custom-card">
+  <mat-card-header style="display: flex; justify-content: center" class="title">
+    <mat-card-title class="title-content">{{ title }} USUARIO</mat-card-title>
+  </mat-card-header>
+  <div fxLayout="column" fxFlex="100">
+    <mat-card-content fxLayout="column" fxFlex="100" class="mat-card">
+      <div fxLayout="row" fxFlex="33.3">
+        <div fxLayout="column" fxFlex="25" style="padding-right: 20px">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold">N° DNI</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="DNI"
+              [(ngModel)]="dni"
+              required
+              (keypress)="validarNumero($event)"
+              (input)="validarLongitud()"
+              maxlength="9"
+              (keydown.enter)="getByDni(dni)"
+            />
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="column" fxFlex="25" style="padding-right: 20px">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold">USUARIO </mat-label>
+            <input
+              matInput
+              type="text"
+              readonly
+              [(ngModel)]="username"
+              maxlength="60"
+              required
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxFlex="33.3">
+        <div fxLayout="column" fxFlex="22" style="padding-right: 20px">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold">GRADO</mat-label>
+            <input matInput type="text" required readonly [(ngModel)]="grado" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="22" style="padding-right: 20px">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold">ARMA</mat-label>
+            <input matInput type="text" required readonly [(ngModel)]="arma" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="50" style="padding-right: 10px">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold">NOMBRES</mat-label>
+            <input
+              matInput
+              type="text"
+              required
+              readonly
+              [(ngModel)]="fullname"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxFlex="33.3">
+        <div fxLayout="column" fxFlex="40" style="padding-right: 10px">
+          <mat-form-field appearance="outline">
+            <mat-label>NUCLEO</mat-label>
+            <mat-select
+              name="selectedNucleo"
+              [(ngModel)]="selectedNucleo"
+
+            >
+              <mat-option class="s" *ngFor="let ss of nucleos" [value]="ss.id">{{
+                ss.nombreCorto
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="40" style="padding-right: 10px">
+          <mat-form-field appearance="outline">
+            <mat-label>BRIGADA</mat-label>
+            <mat-select
+              [(ngModel)]="selectedBrigada"
+
+            >
+              <mat-option class="s" *ngFor="let ss of brigadas" [value]="ss.id"
+                >{{ ss.nombreCorto }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxFlex="40" style="padding-right: 10px">
+          <mat-form-field appearance="outline">
+            <mat-label>UNIDAD</mat-label>
+            <mat-select [(ngModel)]="selectedUnidad">
+              <mat-option  class="s"*ngFor="let ss of unidades" [value]="ss.id">
+                {{"( "+ss.nombreCorto+   " )- "  +           ss.nombreLargo              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    <div fxLayout="row" fxFlex="33.3">
+  <div fxLayout="column" fxFlex="40" style="padding-right: 10px">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Roles </mat-label>
+      <mat-select  [(ngModel)]="rolesSelected" multiple  [compareWith]="compareRoles"
+      >
+         @for (r of roles; track r) {
+               <mat-option class="s" [value]="r">{{r.name}}</mat-option>
+                 }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxLayout="column" fxFlex="20" style="padding-right: 10px">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label style="font-weight: bold">Nivel de Inspectoria</mat-label>
+      <mat-select
+        [(ngModel)]="selectedNivel"
+        (selectionChange)="cargarInspectoriasByigidpadre($event.value)"
+        name="selectedNivel">
+        <mat-option [value]="1">Control Interno</mat-option>
+        <mat-option [value]="2">3er Nivel</mat-option>
+        <mat-option *ngFor="let ins of inspectorias" [value]="ins.id">
+          {{ ins.acronimo || ins.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="column" fxFlex="30" style="padding-right: 10px">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Inspectoria Seleccionada </mat-label>
+      <mat-select [(ngModel)]="selectedInspectoria">
+        <mat-option class="s" *ngFor="let ins of inspectoriasByIdPadre" [value]="ins.id">
+          {{ ins.acronimo || ins.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxLayout="column" fxFlex="20" style="padding-right: 10px">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Cargo </mat-label>
+      <mat-select [(ngModel)]="selectedCargo" >
+        <mat-option class="1" [value]="1"  >Supervisor</mat-option>
+        <mat-option class="2" [value]="2"  >Riesgo</mat-option>
+        <mat-option class="3" [value]="3"  >Cultura</mat-option>
+        <mat-option class="4" [value]="4"  >Inspectoria</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</div>
+
+      <div
+        fxLayout="row"
+        style="padding-right: 10px; padding-top: 15px; padding-left: 60%"
+      >
+        <button
+          mat-raised-button
+          class="salir"
+          fxFlex="70%"
+          style="height: 40px"
+          (click)="salir()"
+        >
+          <mat-icon>close</mat-icon> Cancelar
+        </button>
+        <button
+          mat-raised-button
+          class="save"
+          fxFlex="70%"
+          style="height: 40px"
+          [disabled]="!camposLlenos()"
+          (click)="crearUsuario()"
+        >
+          <mat-icon>{{ saved ? "update" : "save" }}</mat-icon> {{ saved ? "Actualizar" : "Guardar" }}
+        </button>
+      </div>
+    </mat-card-content>
+  </div>
+</mat-card>

@@ -1,0 +1,61 @@
+<div class="example-container">
+    <mat-sidenav-container class="example-sidenav-container">
+        <mat-sidenav id="sidenav" #sidenav style="width: 230px" mode="side" opened="true" disableClose="true">
+            <div class="sidebar-header">
+              <div class="sidebar-logo">
+                <span class="brand-title">CIVIME</span>
+                <span class="brand-subtitle">Centro de Idiomas<br>Virgen de las Mercedes</span>
+              </div>
+              <div class="sidebar-profile">
+                <div class="avatar-circle">
+                  <span>{{ username?.charAt(0) || 'U' }}</span>
+                </div>
+                <div class="profile-info">
+                  <div class="profile-name">{{ username }}</div>
+                  <div class="profile-role">{{ roleActiveName }}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar-menu">
+              @for (m of menus; track $index) {
+                <button
+                  class="myButton"
+                  [routerLinkActive]="['active']"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  [routerLink]="[m.url]"
+                  (click)="selectMenu(m.url)">
+                  <mat-icon>{{ m.icon }}</mat-icon>
+                  <span id="name">{{ m.name }}</span>
+                </button>
+              }
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <mat-toolbar>
+                <button mat-icon-button class="settings" (click)="sidenav.toggle()">
+                    <mat-icon *ngIf="!sidenav.opened">format_indent_increase</mat-icon>
+                    <mat-icon *ngIf="sidenav.opened">format_indent_decrease</mat-icon>
+                </button>
+                <div class="titulo_sistema">
+                    <h1>Centro de Idiomas Virgen de las Mercedes</h1>
+                </div>
+                <span class="example-spacer"></span>
+                <button mat-icon-button class="notificaones" (click)="vernotificaciones()">
+                  <mat-icon [matBadge]="cantidadNotificaciones"  matBadgeColor="warn" matBadgeOverlap="false">notifications</mat-icon>
+                </button>
+
+                 <div>
+                      <h4 class="rolename">{{this.roleActiveName}}</h4>
+                      <h2 class="username"> {{ this.username }}</h2>
+                 </div>
+
+                <button mat-icon-button class="settings" (click)="changeRoleUserLog()">
+                  <mat-icon>settings</mat-icon>
+                </button>
+
+            </mat-toolbar>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

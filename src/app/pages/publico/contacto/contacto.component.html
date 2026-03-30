@@ -1,0 +1,58 @@
+<main class="contacto-page">
+  <section class="contacto-hero">
+    <div class="container">
+      <p class="contacto-eyebrow">Escríbenos o visítanos</p>
+      <h1>Contáctenos</h1>
+      <p class="contacto-lead">
+        Estamos atentos a sus consultas sobre programas, matrícula y horarios.
+        Puede comunicarse por los canales que aparecen a continuación.
+      </p>
+    </div>
+  </section>
+
+  <div class="container contacto-sections">
+    <section class="contacto-card" aria-labelledby="contacto-sede-title">
+      <h2 id="contacto-sede-title">Sede principal</h2>
+      <address class="contacto-datos">
+        <p class="contacto-linea">{{ datos.nombreLargo }}</p>
+        <p class="contacto-linea">{{ datos.direccion }}</p>
+        <p class="contacto-linea">
+          {{ datos.distrito }}, {{ datos.ciudad }} — {{ datos.pais }}
+        </p>
+      </address>
+    </section>
+
+    <section
+      class="contacto-card contacto-card--alt"
+      aria-labelledby="contacto-canales-title">
+      <h2 id="contacto-canales-title">Canales de contacto</h2>
+      <ul class="contacto-lista">
+        <li *ngIf="datos.correo">
+          <span class="contacto-etiqueta">Correo</span>
+          <a [href]="'mailto:' + datos.correo">{{ datos.correo }}</a>
+        </li>
+        <li>
+          <span class="contacto-etiqueta">Informes</span>
+          <a [href]="'mailto:' + datos.correoInformes">{{
+            datos.correoInformes
+          }}</a>
+        </li>
+        <li>
+          <span class="contacto-etiqueta">Teléfono</span>
+          <span>{{ datos.telefono }}</span>
+          <span *ngIf="datos.anexos" class="contacto-anexo">
+            (Anexos {{ datos.anexos }})
+          </span>
+        </li>
+        <li>
+          <span class="contacto-etiqueta">Web</span>
+          <span>{{ datos.dominioWeb }}</span>
+        </li>
+        <li>
+          <span class="contacto-etiqueta">Horario</span>
+          <span>{{ datos.horarioAtencion }}</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+</main>

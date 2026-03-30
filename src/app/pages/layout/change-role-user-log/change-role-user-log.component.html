@@ -1,0 +1,43 @@
+<div class="contenido-wrapper">
+  <div class="header1">
+    <div class="header-title">
+      <h2 class="titulo">
+        <mat-icon>admin_panel_settings</mat-icon>
+        MIS ROLES
+      </h2>
+    </div>
+    <button mat-raised-button 
+            class="btn-salir"
+            (click)="cerrardialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="conteiner">
+    <div class="instruccion">
+      <mat-icon>info</mat-icon>
+      <h4>Seleccione un Rol</h4>
+    </div>
+    
+    <div class="roles-list">
+      <button mat-raised-button 
+              class="role" 
+              [class.role-active]="roleActiveName === r.name"
+              *ngFor="let r of roles"
+              (click)="seleccionarRol(r)">
+        <mat-icon>{{ roleActiveName === r.name ? 'check_circle' : 'perm_identity' }}</mat-icon>
+        <span>{{r.name}}</span>
+        <mat-icon *ngIf="roleActiveName === r.name" class="icon-active">star</mat-icon>
+      </button>
+    </div>
+
+    <div class="cerrar">
+      <button mat-raised-button 
+              class="cerra-sesion" 
+              (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Cerrar Sesión
+      </button>
+    </div>
+  </div>
+</div>

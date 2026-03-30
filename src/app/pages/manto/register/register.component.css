@@ -1,0 +1,252 @@
+.full-width {
+  width: 100%;
+}
+
+.title {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  color: #ffffff;
+
+  
+}
+
+.title-content {
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.custom-card {
+  justify-content: center;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.mat-card {
+  background: #f8fafc;
+  padding: 20px;
+}
+
+.example-full-width {
+  width: 100%;
+  padding-right: 10px;
+  color: #666;
+}
+
+
+mat-form-field {
+  transition: transform 0.2s ease;
+}
+
+mat-form-field:hover {
+  transform: translateY(-2px);
+}
+
+/* Estilos para los selects */
+mat-select {
+  color: #333;
+}
+
+mat-select:focus {
+  color: #2563eb;
+}
+
+.textarea {
+  min-height: 60px;
+}
+
+/* Botón Guardar */
+.save {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.save:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.save:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.save:disabled {
+  background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+  color: #ffffff !important;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.save mat-icon {
+  transition: transform 0.3s ease;
+}
+
+.save:hover:not(:disabled) mat-icon {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* Botón Salir */
+.salir {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff !important;
+  border: none;
+  border-radius: 8px;
+  margin-right: 10px !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.salir:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+.salir:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.salir mat-icon {
+  transition: transform 0.3s ease;
+}
+
+.salir:hover mat-icon {
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Opciones de select */
+.s {
+  color: #1f2937;
+  transition: all 0.2s ease;
+}
+
+.s:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  color: #ffffff !important;
+  transform: translateX(4px);
+}
+
+/* Estilos para SweetAlert2 */
+::ng-deep .custom-swal-popup {
+  border-radius: 16px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2) !important;
+  padding: 24px !important;
+}
+
+::ng-deep .custom-swal-title {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #1f2937 !important;
+  margin-bottom: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+::ng-deep .custom-swal-title .material-icons {
+  font-size: 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+::ng-deep .custom-swal-html-container {
+  font-size: 16px !important;
+  color: #4b5563 !important;
+  line-height: 1.6 !important;
+}
+
+::ng-deep .custom-swal-confirm-button {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+::ng-deep .custom-swal-confirm-button:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4) !important;
+}
+
+::ng-deep .custom-swal-confirm-button .material-icons {
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  vertical-align: middle !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Mejoras en los campos del formulario */
+mat-form-field {
+  margin-bottom: 8px;
+}
+
+mat-form-field .mat-mdc-text-field-wrapper {
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+mat-form-field .mat-mdc-form-field-focus-overlay {
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+mat-form-field.mat-focused .mat-mdc-form-field-focus-overlay {
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* Animación suave para los campos */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+mat-form-field {
+  animation: fadeIn 0.3s ease-out;
+}

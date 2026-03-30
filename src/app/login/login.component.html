@@ -1,0 +1,72 @@
+<style>
+  body {
+    background-image: url('assets/login.png');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+  }
+</style>
+
+<body>
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title style="color: rgb(255, 255, 255);">
+        Aula Virtual</mat-card-title>
+      </mat-card-header>
+      <br>
+      <form class="form-group" [formGroup]="_formulario" (ngSubmit)="login()" #loginForm="ngForm">
+        <mat-card-content>
+          <mat-form-field class="example-full-width" appearance="fill">
+             <mat-label style=" font-weight: bold ; color: rgb(0, 0, 0);">USUARIO</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input matInput type="text" name="username"
+            formControlName="username"
+             (input)="convertirAMayusculas()"
+             placeholder="Usuario "
+              [(ngModel)]="username"
+              class="username"
+               maxlength="60" />
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+               <mat-label style=" font-weight: bold ; color: rgb(0, 0, 0);">CONTRASEÑA</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input matInput type="password" formControlName="password" name="password" placeholder="Contraseña"
+              [(ngModel)]="password" class="password" required minlength="8" maxlength="30" />
+          </mat-form-field>
+          <button mat-raised-button type="submit" class="add">
+            Iniciar Sesión
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </mat-card-content>
+      </form>
+      <a mat-button style="color: rgb(255, 254, 254);" href="#" target="_blank"> ¿Has olvidado la
+        contraseña?</a>
+    </mat-card>
+  </div>
+
+
+  <div class="footer">
+    <footer>
+      <div class="footer-content">
+        <div class="footer-text">
+          <span class="copyright-icon">©</span>
+          <span class="footer-year">{{year}}</span>
+          <span class="footer-divider">|</span>
+          <span class="footer-department">Departamento de Sistemas de Información</span>
+          <span class="footer-divider">|</span>
+          <span class="footer-acronym">DETEL-CIVIME</span>
+        </div>
+        <div class="footer-rights">
+          Todos los Derechos Reservados
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+
+<mat-card *ngIf="message">{{message}}</mat-card>
+<mat-card *ngIf="error">{{error}}</mat-card>

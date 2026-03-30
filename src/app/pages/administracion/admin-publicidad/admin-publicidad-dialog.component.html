@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Nueva publicidad</h2>
+
+<div mat-dialog-content class="dialog-body">
+  @if (errorMsg) {
+    <p class="dialog-error">{{ errorMsg }}</p>
+  }
+
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Descripción</mat-label>
+    <textarea
+      matInput
+      rows="3"
+      [(ngModel)]="descripcion"
+      name="descripcion"
+      placeholder="Texto que verá el usuario en la portada"></textarea>
+  </mat-form-field>
+
+  <div class="file-row">
+    <label class="file-label">
+      <span class="file-btn">Elegir imagen</span>
+      <input type="file" accept="image/jpeg,image/png,image/gif,image/webp" (change)="onFile($event)" />
+    </label>
+    <span class="file-name">{{ archivo?.name || 'Ningún archivo' }}</span>
+  </div>
+
+  <mat-checkbox [(ngModel)]="estado" name="estado">Activo (visible en portada)</mat-checkbox>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cerrar()" [disabled]="saving">Cancelar</button>
+  <button mat-flat-button color="primary" type="button" (click)="guardar()" [disabled]="saving">
+    {{ saving ? 'Guardando…' : 'Guardar' }}
+  </button>
+</div>

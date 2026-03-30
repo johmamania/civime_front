@@ -1,0 +1,57 @@
+.administracion-layout {
+  min-height: 100vh;
+  padding: 1.5rem clamp(1rem, 4vw, 2.5rem) 2.5rem;
+  background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+  box-sizing: border-box;
+}
+
+.administracion-header {
+  max-width: 1200px;
+  margin: 0 auto 1.25rem;
+}
+
+.administracion-back {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.administracion-back:hover {
+  text-decoration: underline;
+}
+
+.administracion-header h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.administracion-lead {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.administracion-tabs {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.administracion-tabs ::ng-deep .mat-mdc-tab-header {
+  --mdc-secondary-navigation-tab-container-height: 48px;
+}
+
+.administracion-tabs ::ng-deep .mat-mdc-tab-body-content {
+  overflow: visible;
+  padding: 0 1rem 1rem;
+}

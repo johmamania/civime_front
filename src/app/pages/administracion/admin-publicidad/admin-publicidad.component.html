@@ -1,0 +1,104 @@
+<div class="admin-tab-panel admin-publicidad">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Publicidad</mat-card-title>
+      <mat-card-subtitle>
+        Banners de la portada: imagen, descripción, fecha y estado (activo / inactivo).
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="toolbar-row">
+        <mat-form-field appearance="outline" class="buscar-field" subscriptSizing="dynamic">
+          <mat-label>Buscar por descripción</mat-label>
+          <input matInput [(ngModel)]="buscar" name="buscarPub" autocomplete="off" />
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="button" (click)="abrirCrear()">
+          <mat-icon>add</mat-icon>
+          Crear nuevo
+        </button>
+      </div>
+
+      @if (error) {
+        <p class="lista-error">{{ error }}</p>
+      }
+
+      @if (loading) {
+        <div class="lista-loading">
+          <mat-spinner diameter="40" />
+        </div>
+      } @else {
+        <div class="tabla-wrap">
+          <table class="pub-table">
+            <thead>
+              <tr>
+                <th class="col-n">N°</th>
+                <th class="col-thumb"></th>
+                <th>Descripción</th>
+                <th class="col-fecha">Fecha</th>
+                <th class="col-estado">Estado</th>
+                <th class="col-acciones">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (p of filtradas; track p.id; let i = $index) {
+                <tr>
+                  <td class="col-n">{{ i + 1 }}</td>
+                  <td class="col-thumb">
+                    <img
+                      class="thumb"
+                      [src]="miniaturaUrl(p)"
+                      [alt]="p.descripcion"
+                      loading="lazy" />
+                  </td>
+                  <td class="cell-desc">{{ p.descripcion }}</td>
+                  <td class="col-fecha">{{ p.fecha | date : 'dd/MM/yyyy HH:mm' }}</td>
+                  <td class="col-estado">
+                    <span class="estado-chip" [ngClass]="claseEstado(p.estado)">
+                      {{ textoEstado(p.estado) }}
+                    </span>
+                  </td>
+                  <td class="col-acciones">
+                    @if (p.estado !== 1) {
+                      <button
+                        mat-stroked-button
+                        color="primary"
+                        type="button"
+                        [disabled]="accionId === p.id"
+                        (click)="cambiarEstado(p, 1)">
+                        Activar
+                      </button>
+                    }
+                    @if (p.estado !== 0) {
+                      <button
+                        mat-stroked-button
+                        type="button"
+                        [disabled]="accionId === p.id"
+                        (click)="cambiarEstado(p, 0)">
+                        Desactivar
+                      </button>
+                    }
+                    <button
+                      mat-icon-button
+                      type="button"
+                      color="warn"
+                      aria-label="Eliminar"
+                      [disabled]="accionId === p.id"
+                      (click)="eliminar(p)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="6" class="empty-msg">No hay publicidades registradas.</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>

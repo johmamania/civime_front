@@ -1,0 +1,191 @@
+<main>
+    <section id="inicio" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="tag">MATRICULA ABIERTA</p>
+          <h1>Aprende idiomas y amplia tus oportunidades</h1>
+          <p>
+            Programas de Ingles, Portugues e Italiano con modalidad online y
+            presencial. Inicio de clases todos los meses.
+          </p>
+          <div class="hero-actions">
+            <a href="#matricula" class="btn btn-primary">Matricularme</a>
+            <a href="#programas" class="btn btn-secondary">Ver Programas</a>
+          </div>
+        </div>
+        <div class="hero-card publicidad-card">
+         <!-- <h3>Publicidad</h3>-->
+
+          <div class="publicidad-carousel">
+            <button
+              *ngIf="publicidadPuedeNavegar"
+              type="button"
+              class="publicidad-nav publicidad-nav-prev"
+              (click)="publicidadAnterior()"
+              aria-label="Ver publicidad anterior">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg>
+            </button>
+            <div class="publicidad-imagen-wrap">
+              <img
+                class="publicidad-imagen"
+                [@publicidadImagen]="publicidadActualIndex"
+                [src]="publicidadActual.img"
+                [alt]="publicidadActual.descripcion"
+                loading="eager"
+                decoding="async" />
+            </div>
+            <button
+              *ngIf="publicidadPuedeNavegar"
+              type="button"
+              class="publicidad-nav publicidad-nav-next"
+              (click)="publicidadSiguiente()"
+              aria-label="Ver publicidad siguiente">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M8.59 7.41 10 6l6 6-6 6-1.41-1.41L13.17 12z" />
+              </svg>
+            </button>
+          </div>
+
+          <p class="publicidad-descripcion">{{ publicidadActual.descripcion }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="programas" class="section programas">
+      <div class="container">
+        <header class="programas-header">
+          <h2>Elige el mejor programa para ti</h2>
+          <p class="section-subtitle programas-subtitle">
+            Y descubre un mundo diferente
+          </p>
+        </header>
+        <div class="cards programas-cards">
+          <article
+            class="card"
+            *ngFor="let programa of programas"
+            [attr.data-programa]="programa.codigo">
+            <h3>{{ programa.titulo }}</h3>
+            <p>{{ programa.descripcion }}</p>
+            <a [routerLink]="programa.ruta">Mas informacion</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="examenes" class="section alt">
+      <div class="container">
+        <h2>Examenes y certificacion</h2>
+        <div class="info-grid">
+          <article class="info-block">
+            <h3>Examen de Clasificacion</h3>
+            <p>
+              Mide tu nivel de conocimiento para ubicarte correctamente dentro
+              del plan de estudios.
+            </p>
+          </article>
+          <article class="info-block">
+            <h3>Examen de Suficiencia</h3>
+            <p>
+              Dirigido a estudiantes de posgrado que deben acreditar dominio de
+              un idioma extranjero.
+            </p>
+          </article>
+          <article class="info-block">
+            <h3>Documentos</h3>
+            <p>
+              Solicita certificados, constancias y procedimientos de
+              autenticacion de manera ordenada.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sedes" class="section sedes">
+      <div class="container">
+        <h2>Nuestra sede principal</h2>
+        <p class="section-subtitle sedes-subtitle">
+          Sede en el centro de Lima, sobre la Av. Arequipa (Cercado de Lima).
+        </p>
+        <article class="sede-card">
+          <div class="sede-imagen-wrap">
+            <img
+              class="sede-imagen"
+              [src]="sedePrincipal.img"
+              [alt]="sedePrincipal.imgAlt"
+              width="800"
+              height="520"
+              loading="lazy" />
+          </div>
+          <div class="sede-datos">
+            <div class="sede-datos-head">
+              <span class="sede-badge">Sede principal</span>
+              <h3>{{ sedePrincipal.titulo }}</h3>
+            </div>
+            <ul class="sede-detalles">
+              <li
+                *ngFor="let linea of sedePrincipal.lineas; let i = index"
+                class="sede-detalle-item"
+                [class.sede-detalle-item--tel]="i === 1">
+                <span class="sede-detalle-icon" aria-hidden="true"></span>
+                <span class="sede-detalle-texto">{{ linea }}</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="matricula" class="section enroll">
+      <div class="container enroll-inner">
+        <header class="enroll-header">
+          <h2>Opciones de matricula</h2>
+          <p class="section-subtitle enroll-subtitle">
+            Elige la opcion segun tu condicion de alumno
+          </p>
+        </header>
+        <div class="enroll-grid">
+          <article class="enroll-item">
+            <h3>Alumno nuevo</h3>
+            <ul class="enroll-link-list">
+              <li>
+                <a href="#">Formulario basico 1 — Virtual</a>
+              </li>
+              <li>
+                <a href="#">Formulario basico 1 — Presencial</a>
+              </li>
+            </ul>
+          </article>
+          <article class="enroll-item">
+            <h3>Reingresante</h3>
+            <ul class="enroll-link-list">
+              <li>
+                <a href="#">Formulario reingresantes y clasificacion</a>
+              </li>
+            </ul>
+          </article>
+          <article class="enroll-item">
+            <h3>Alumno regular</h3>
+            <ul class="enroll-link-list">
+              <li>
+                <a href="#">Matricula virtual — Aula Virtual</a>
+              </li>
+              <li>
+                <a href="#">Matricula presencial — Lima</a>
+              </li>
+            </ul>
+          </article>
+        </div>
+        <p class="enroll-notice" role="note">
+          <strong>Importante:</strong> Para una atencion mas rapida ya no se utiliza
+          el correo para el proceso de matricula.
+        </p>
+      </div>
+    </section>
+</main>

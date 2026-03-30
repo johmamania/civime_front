@@ -1,0 +1,53 @@
+<div class="notificaciones-container">
+  <div class="header">
+    <h2>Notificaciones</h2>
+    <div class="header-actions">
+      <button mat-button (click)="marcarTodasComoLeidas()" *ngIf="getNotificacionesNoLeidas() > 0">
+        <mat-icon>done_all</mat-icon>
+        Marcar todas como leídas
+      </button>
+      <button mat-icon-button (click)="cerrar()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="notificaciones-list">
+    <div *ngIf="notificaciones.length === 0" class="no-notificaciones">
+      <mat-icon>notifications_off</mat-icon>
+      <p>No hay notificaciones</p>
+    </div>
+
+    <div *ngFor="let notificacion of notificaciones"
+         class="notificacion-item"
+         [class.leida]="notificacion.leida"
+         (click)="marcarComoLeida(notificacion)">
+      <div class="notificacion-content">
+        <div class="notificacion-header">
+          <h3>{{ notificacion.titulo }}</h3>
+          <button mat-icon-button
+                  class="delete-btn"
+                  (click)="eliminarNotificacion(notificacion.id); $event.stopPropagation()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div>
+          <p class="obs-verde"> Año:
+            <span class="obs-verde-texto">{{ notificacion.anio }}</span></p>
+
+          <p class="obs-verde"> Entregable:
+            <span class="obs-verde-texto">{{ notificacion.entregable }}</span></p>
+
+
+          <p class="obs-roja"> Observación:
+            <span class="obs-roja-texto">{{ notificacion.observacion }}</span></p>
+          <p class="obs-roja">  Fecha Observación:
+             <span class="obs-roja-texto">{{ formatearFechadiaMesAnio(notificacion.fechaAccion) }}</span></p>
+        </div>
+
+      </div>
+     <!-- <div class="indicador-no-leida" *ngIf="!notificacion.leida"></div> -->
+    </div>
+  </div>
+</div>
+

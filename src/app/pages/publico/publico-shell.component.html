@@ -1,0 +1,75 @@
+<div class="public-site">
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="top-links">
+        <a href="#">Inscripcion Examen</a>
+        <a href="#">Calendario</a>
+        <a href="#">Procedimientos</a>
+        <a href="#">Aula Virtual</a>
+      </div>
+      <div class="contact">
+        <a [href]="'mailto:' + datosCivime.correo">{{ datosCivime.correo }}</a>
+        <span class="contact-sep" aria-hidden="true">·</span>
+        <span>{{ datosCivime.telefono }}</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="main-nav">
+    <div class="container nav-inner">
+      <a class="brand" routerLink="/inicio">
+        <img class="brand-badge" src="assets/images/civime.png" alt="Logo CIVIME" />
+        <div class="brand-text">
+          <strong>{{ datosCivime.nombreCorto }}</strong>
+          <small>Centro de Idiomas — USMP</small>
+        </div>
+      </a>
+
+      <input id="menu-toggle" type="checkbox" class="menu-toggle" />
+      <label for="menu-toggle" class="menu-btn" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav class="menu">
+        <div
+          class="menu-item"
+          *ngFor="let item of menuItems; let i = index"
+          [class.menu-item--open]="expandedMobileMenuIndex === i">
+          <a
+            *ngIf="item.route; else parentOnly"
+            [routerLink]="item.route">
+            {{ item.label }}
+          </a>
+
+          <ng-template #parentOnly>
+            <button
+              type="button"
+              class="menu-parent"
+              [attr.aria-expanded]="expandedMobileMenuIndex === i"
+              (click)="toggleMobileSubmenu(i, item, $event)">
+              {{ item.label }}
+            </button>
+          </ng-template>
+
+          <ul class="submenu" *ngIf="item.submenus?.length">
+            <li *ngFor="let submenu of item.submenus">
+              <a
+                [routerLink]="submenu.route"
+                [fragment]="submenu.fragment ?? undefined">
+                {{ submenu.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <div class="public-main">
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-publico-footer></app-publico-footer>
+</div>
