@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PublicidadApiService } from '../../../services/publicidad-api.service';
 import { PublicidadApiDto } from '../../../models/publicidad-api.model';
-import { AdminPublicidadDialogComponent } from './admin-publicidad-dialog.component';
+import { AdminPublicidadDialogComponent } from './dialog-create/admin-publicidad-dialog.component';
 
 @Component({
   selector: 'app-admin-publicidad',
@@ -65,7 +65,7 @@ export class AdminPublicidadComponent implements OnInit {
       },
       error: () => {
         this.error =
-          'No se pudo cargar la lista. Verifique el backend y /public/publicidad.';
+          'No se pudo cargar la lista. Verifique la URL y la clave de Supabase, la tabla publicidad y las políticas RLS.';
         this.loading = false;
       }
     });
@@ -76,6 +76,21 @@ export class AdminPublicidadComponent implements OnInit {
       .open(AdminPublicidadDialogComponent, {
         width: 'min(480px, 96vw)',
         autoFocus: 'first-tabbable'
+      })
+      .afterClosed()
+      .subscribe((ok) => {
+        if (ok) {
+          this.cargar();
+        }
+      });
+  }
+
+  abrirEditar(p: PublicidadApiDto): void {
+    this.dialog
+      .open(AdminPublicidadDialogComponent, {
+        width: 'min(480px, 96vw)',
+        autoFocus: 'first-tabbable',
+        data: { publicidad: p }
       })
       .afterClosed()
       .subscribe((ok) => {
@@ -116,7 +131,7 @@ export class AdminPublicidadComponent implements OnInit {
   }
 
   eliminar(p: PublicidadApiDto): void {
-    if (!confirm('Eliminar esta publicidad y su imagen del servidor?')) {
+    if (!confirm('¿Eliminar esta publicidad y su imagen en Supabase Storage?')) {
       return;
     }
     this.accionId = p.id;

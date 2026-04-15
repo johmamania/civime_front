@@ -37,6 +37,7 @@
                 <th class="col-thumb"></th>
                 <th>Título</th>
                 <th>Descripción</th>
+                <th class="col-user">Usuario</th>
                 <th class="col-fecha">Fecha</th>
                 <th class="col-estado">Estado</th>
                 <th class="col-acciones">Acciones</th>
@@ -55,6 +56,7 @@
                   </td>
                   <td class="cell-desc cell-titulo">{{ p.titulo || '—' }}</td>
                   <td class="cell-desc">{{ p.descripcion }}</td>
+                  <td class="col-user">{{ p.username || '—' }}</td>
                   <td class="col-fecha">{{ p.fecha | date : 'dd/MM/yyyy HH:mm' }}</td>
                   <td class="col-estado">
                     <span class="estado-chip" [ngClass]="claseEstado(p.estado)">
@@ -62,6 +64,7 @@
                     </span>
                   </td>
                   <td class="col-acciones">
+
                     @if (p.estado !== 1) {
                       <button
                         mat-stroked-button
@@ -82,6 +85,15 @@
                       </button>
                     }
                     <button
+                    mat-icon-button
+                    type="button"
+                    color="primary"
+                    aria-label="Editar texto"
+                    [disabled]="accionId === p.id"
+                    (click)="abrirEditar(p)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                    <button
                       mat-icon-button
                       type="button"
                       color="warn"
@@ -94,7 +106,7 @@
                 </tr>
               } @empty {
                 <tr>
-                  <td colspan="7" class="empty-msg">No hay publicidades registradas.</td>
+                  <td colspan="8" class="empty-msg">No hay publicidades registradas.</td>
                 </tr>
               }
             </tbody>

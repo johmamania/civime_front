@@ -6,17 +6,39 @@
 }
 
 .administracion-header {
-  max-width: 1200px;
+  max-width: 95%;
+  background-color: #102249;
+  padding: 10px;
   margin: 0 auto 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-radius: 10px;
 }
 
+.administracion-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.administracion-title {
+  color: #ffffff !important;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
 .administracion-back {
-  display: inline-block;
-  margin-bottom: 0.65rem;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.88rem;
   font-weight: 600;
-  color: #1d4ed8;
+  color: #d8231d;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .administracion-back:hover {
@@ -24,21 +46,41 @@
 }
 
 .administracion-header h1 {
-  margin: 0 0 0.35rem;
+  margin: 0;
   font-size: clamp(1.35rem, 3vw, 1.75rem);
   font-weight: 700;
   color: #0f172a;
   letter-spacing: -0.02em;
 }
 
-.administracion-lead {
-  margin: 0;
+.administracion-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.88rem;
+}
+
+.administracion-user-label {
   color: #64748b;
-  font-size: 0.95rem;
+}
+
+@media (max-width: 720px) {
+  .administracion-header {
+    align-items: flex-start;
+  }
+
+  .administracion-header-left {
+    flex-wrap: wrap;
+  }
 }
 
 .administracion-tabs {
-  max-width: 1200px;
+  max-width: 95%;
   margin: 0 auto;
   background: #fff;
   border-radius: 0.75rem;

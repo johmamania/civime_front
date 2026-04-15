@@ -1,12 +1,22 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef
+} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { PublicidadApiService } from '../../../services/publicidad-api.service';
+import { PublicidadApiService } from '../../../../services/publicidad-api.service';
+import { PublicidadApiDto } from '../../../../models/publicidad-api.model';
+
+
+interface AdminPublicidadDialogData {
+  publicidad?: PublicidadApiDto;
+}
 
 @Component({
   selector: 'app-admin-publicidad-dialog',
@@ -26,10 +36,15 @@ import { PublicidadApiService } from '../../../services/publicidad-api.service';
 export class AdminPublicidadDialogComponent {
   private readonly dialogRef = inject(MatDialogRef<AdminPublicidadDialogComponent>);
   private readonly api = inject(PublicidadApiService);
+  private readonly data =
+    inject<AdminPublicidadDialogData | null>(MAT_DIALOG_DATA, { optional: true }) ??
+    null;
 
-  titulo = '';
-  descripcion = '';
-  estado = true;
+  readonly editando = !!this.data?.publicidad;
+
+  titulo = this.data?.publicidad?.titulo ?? '';
+  descripcion = this.data?.publicidad?.descripcion ?? '';
+  estado = this.data?.publicidad?.estado === 1;
   archivo: File | null = null;
   saving = false;
   errorMsg: string | null = null;
@@ -51,10 +66,31 @@ export class AdminPublicidadDialogComponent {
       this.errorMsg = 'Ingrese una descripción.';
       return;
     }
-    if (!this.archivo) {
+    if (!this.editando && !this.archivo) {
       this.errorMsg = 'Seleccione una imagen (jpg, png, gif o webp).';
       return;
     }
+    if (this.editando && this.data?.publicidad) {
+      this.saving = true;
+      this.api
+        .actualizarTexto(this.data.publicidad.id, {
+          titulo: this.titulo.trim() || null,
+          descripcion: this.descripcion.trim()
+        })
+        .subscribe({
+          next: () => this.dialogRef.close(true),
+          error: (err) => {
+            this.saving = false;
+            const m = err?.message ?? err?.error?.message;
+            this.errorMsg =
+              typeof m === 'string'
+                ? m
+                : 'No se pudo actualizar el texto de la publicidad.';
+          }
+        });
+      return;
+    }
+
     const fd = new FormData();
     fd.append('titulo', this.titulo.trim());
     fd.append('descripcion', this.descripcion.trim());
@@ -65,9 +101,11 @@ export class AdminPublicidadDialogComponent {
       next: () => this.dialogRef.close(true),
       error: (err) => {
         this.saving = false;
-        const m = err?.error?.message;
+        const m = err?.message ?? err?.error?.message;
         this.errorMsg =
-          typeof m === 'string' ? m : 'No se pudo guardar. Revise el backend.';
+          typeof m === 'string'
+            ? m
+            : 'No se pudo guardar. Revise Supabase, el bucket y las políticas de Storage.';
       }
     });
   }

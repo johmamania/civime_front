@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-  "buildProduction": "ng build --configuration production --base-href /civime/",
+    "buildProduction": "ng build --configuration production --base-href /civime/",
     "test": "ng test"
   },
   "private": true,
@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
     "@auth0/angular-jwt": "^5.2.0",
+    "@supabase/supabase-js": "^2.103.0",
     "chart.js": "^4.4.1",
     "moment": "^2.30.1",
     "ng-apexcharts": "^1.7.5",

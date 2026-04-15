@@ -7,6 +7,7 @@ import { PublicoShellComponent } from './pages/publico/publico-shell.component';
 import { NosotrosComponent } from './pages/publico/nosotros/nosotros.component';
 import { ContactoComponent } from './pages/publico/contacto/contacto.component';
 import { MatriculasComponent } from './pages/publico/matriculas/matriculas.component';
+import { adminSupabaseGuard } from './guard/admin-supabase.guard';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'administracion',
+    canMatch: [adminSupabaseGuard],
     loadComponent: () =>
       import('./pages/administracion/administracion.component').then(
         (m) => m.AdministracionComponent

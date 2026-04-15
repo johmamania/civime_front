@@ -1,0 +1,39 @@
+.dialog-title {
+  text-align: center;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.2rem;
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: min(100%, 360px);
+  padding-top: 0.3rem;
+}
+
+.full {
+  padding-top: 5px;
+  width: 100%;
+}
+
+.dialog-error {
+  margin: 0;
+  padding: 0.5rem 0.65rem;
+  border-radius: 0.5rem;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  padding-top: 0.35rem;
+}
+
+.dialog-actions button {
+  min-width: 120px;
+}

@@ -1,10 +1,18 @@
+
+
 <div class="administracion-layout">
   <header class="administracion-header">
-    <a routerLink="/inicio" class="administracion-back">← Volver al sitio público</a>
-    <h1>Administración CIVIME</h1>
-    <p class="administracion-lead">
-      Panel interno: publicidad, cursos y estadísticas.
-    </p>
+    <div class="administracion-header-left">
+      <a
+        routerLink="/inicio"
+        class="administracion-back"
+        (click)="volverSitioPublico($event)">← Volver al sitio público</a>
+      <h1 class="administracion-title">Administración CIVIME</h1>
+    </div>
+    <div class="administracion-user">
+      <span class="administracion-user-label">Usuario:</span>
+      <strong>{{ usernameLogueado }}</strong>
+    </div>
   </header>
 
   <mat-tab-group

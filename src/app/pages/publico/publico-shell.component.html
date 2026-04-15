@@ -38,12 +38,20 @@
           *ngFor="let item of menuItems; let i = index"
           [class.menu-item--open]="expandedMobileMenuIndex === i">
           <a
-            *ngIf="item.route; else parentOnly"
-            [routerLink]="item.route">
+            *ngIf="item.route && item.route !== '/administracion'; else parentOnly"
+            [routerLink]="item.route"
+            (click)="onMenuClick(item, $event)">
             {{ item.label }}
           </a>
 
           <ng-template #parentOnly>
+            <a
+              *ngIf="item.route === '/administracion'; else submenuParent"
+              href="#"
+              (click)="onMenuClick(item, $event)">
+              {{ item.label }}
+            </a>
+            <ng-template #submenuParent>
             <button
               type="button"
               class="menu-parent"
@@ -51,6 +59,7 @@
               (click)="toggleMobileSubmenu(i, item, $event)">
               {{ item.label }}
             </button>
+            </ng-template>
           </ng-template>
 
           <ul class="submenu" *ngIf="item.submenus?.length">

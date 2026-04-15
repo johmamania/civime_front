@@ -1,0 +1,156 @@
+CONFIGURACION SUPABASE - CIVIME FRONTEND
+=======================================
+
+Objetivo
+--------
+1) Login ADMIN desde modal (usuario + contraseña) usando Supabase Auth.
+2) Publicidad en Supabase (tabla + imagenes en Storage).
+3) Lectura/escritura desde frontend Angular.
+
+
+1. CREAR PROYECTO EN SUPABASE
+-----------------------------
+1) Ir a https://supabase.com/ y crear proyecto.
+2) Esperar que termine el aprovisionamiento.
+3) Guardar:
+   - Project URL
+   - anon public key
+
+
+2. CONFIGURAR VARIABLES EN ANGULAR
+----------------------------------
+En:
+- src/environments/environment.development.ts
+- src/environments/environment.ts
+
+Completar:
+supabase: {
+  url: 'https://TU-PROYECTO.supabase.co',
+  anonKey: 'TU_SUPABASE_ANON_KEY',
+  publicidadBucket: 'publicidad'
+}
+
+Nota:
+- Debe ser exactamente el mismo nombre de bucket que crees en Storage.
+
+
+3. AUTH PARA ADMIN (LOGIN MODAL)
+--------------------------------
+3.1 Crear usuario admin
+1) Supabase Dashboard -> Authentication -> Users.
+2) Click en "Add user".
+3) Registrar email y password del administrador.
+4) Confirmar usuario (si pide confirmacion de correo).
+
+3.2 Proveedor de Email
+1) Authentication -> Providers -> Email.
+2) Verificar que "Enable Email provider" esté activo.
+
+3.3 JWT claims (username para mensaje de bienvenida)
+Opcional recomendado:
+1) Authentication -> Users -> seleccionar usuario admin.
+2) En metadata agregar por ejemplo:
+   {
+     "username": "admin_civime",
+     "full_name": "Administrador CIVIME"
+   }
+
+El frontend intenta leer en este orden:
+- user_metadata.user_name
+- user_metadata.username
+- user_metadata.full_name
+- name
+- preferred_username
+- email
+
+
+4. TABLA PUBLICIDAD
+-------------------
+Ya tienes script base:
+- supabase/publicidad-setup.sql
+
+Ejecutar ese archivo en:
+Supabase Dashboard -> SQL Editor -> New query -> pegar contenido -> Run.
+
+Este script crea:
+- tabla public.publicidad
+- indice de estado/fecha
+- RLS
+- politicas para tabla y Storage
+
+
+5. STORAGE PARA IMAGENES
+------------------------
+5.1 Crear bucket
+1) Dashboard -> Storage -> New bucket.
+2) Nombre: publicidad
+3) Marcar bucket como Public.
+
+5.2 Politicas de Storage
+El script publicidad-setup.sql ya crea politicas para:
+- select
+- insert
+- update
+- delete
+sobre bucket_id = 'publicidad'
+
+
+6. RLS Y SEGURIDAD (IMPORTANTE)
+-------------------------------
+Actualmente el script está en modo permisivo para avanzar rápido:
+- permite operaciones con rol anon/authenticated.
+
+Para produccion se recomienda:
+1) Exigir usuario autenticado en inserts/updates/deletes.
+2) Limitar select publico solo a publicidades activas (estado = 1).
+3) Dejar admin real via Supabase Auth + politicas por uid/rol.
+
+
+7. PRUEBA FUNCIONAL PASO A PASO
+-------------------------------
+1) Correr frontend: npm start
+2) Ir al sitio publico.
+3) Click en menu ADMIN.
+4) Debe abrir modal (sin redirigir aun).
+5) Ingresar email/password de Supabase Auth.
+6) Si correcto:
+   - aparece alerta "Bienvenido <username>"
+   - redirige a /administracion
+7) En administracion:
+   - crear publicidad con imagen
+   - validar que suba al bucket publicidad
+   - validar que se vea en inicio (publicidad activa)
+
+
+8. ERRORES COMUNES Y SOLUCION
+-----------------------------
+Error: "Invalid login credentials"
+- Usuario no existe en Auth Users o password incorrecto.
+
+Error: "No se recibió token de sesión"
+- Fallo de login; revisar provider Email y usuario confirmado.
+
+Error al guardar publicidad (insert/select)
+- Revisar tabla public.publicidad creada.
+- Revisar politicas RLS.
+
+Error al subir imagen
+- Revisar bucket publicidad existente.
+- Revisar politicas en storage.objects.
+
+Imagen no carga en portada
+- Revisar bucket publico.
+- Verificar url_archivo guardada y getPublicUrl().
+
+
+9. CHECKLIST RAPIDO
+-------------------
+[ ] Project URL y anon key copiadas al environment
+[ ] Usuario admin creado en Supabase Auth
+[ ] Bucket publicidad creado (publico)
+[ ] SQL de supabase/publicidad-setup.sql ejecutado
+[ ] Login ADMIN abre modal y autentica
+[ ] Mensaje de bienvenida con username
+[ ] Redireccion a /administracion despues de login
+[ ] CRUD de publicidad funcionando con imagenes
+
