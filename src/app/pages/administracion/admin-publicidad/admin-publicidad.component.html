@@ -3,14 +3,14 @@
     <mat-card-header>
       <mat-card-title>Publicidad</mat-card-title>
       <mat-card-subtitle>
-        Banners de la portada: imagen, descripción, fecha y estado (activo / inactivo).
+        Banners de la portada: imagen, título, descripción, fecha y estado (activo / inactivo).
       </mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <div class="toolbar-row">
         <mat-form-field appearance="outline" class="buscar-field" subscriptSizing="dynamic">
-          <mat-label>Buscar por descripción</mat-label>
+          <mat-label>Buscar por título o descripción</mat-label>
           <input matInput [(ngModel)]="buscar" name="buscarPub" autocomplete="off" />
           <mat-icon matPrefix>search</mat-icon>
         </mat-form-field>
@@ -35,6 +35,7 @@
               <tr>
                 <th class="col-n">N°</th>
                 <th class="col-thumb"></th>
+                <th>Título</th>
                 <th>Descripción</th>
                 <th class="col-fecha">Fecha</th>
                 <th class="col-estado">Estado</th>
@@ -49,9 +50,10 @@
                     <img
                       class="thumb"
                       [src]="miniaturaUrl(p)"
-                      [alt]="p.descripcion"
+                      [alt]="p.titulo || p.descripcion"
                       loading="lazy" />
                   </td>
+                  <td class="cell-desc cell-titulo">{{ p.titulo || '—' }}</td>
                   <td class="cell-desc">{{ p.descripcion }}</td>
                   <td class="col-fecha">{{ p.fecha | date : 'dd/MM/yyyy HH:mm' }}</td>
                   <td class="col-estado">
@@ -92,7 +94,7 @@
                 </tr>
               } @empty {
                 <tr>
-                  <td colspan="6" class="empty-msg">No hay publicidades registradas.</td>
+                  <td colspan="7" class="empty-msg">No hay publicidades registradas.</td>
                 </tr>
               }
             </tbody>

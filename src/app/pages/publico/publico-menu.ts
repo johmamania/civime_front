@@ -39,8 +39,11 @@ export function buildPublicMenuItems(): MenuItem[] {
       submenus: [{ label: 'Cursos Extracurriculares', route: '/inicio' }]
     },
     {
-      label: 'Matricula Abril 2026',
-      submenus: [{ label: 'Ir a Matricula', route: '/inicio', fragment: 'matricula' }]
+      label: 'MATRÍCULAS',
+      submenus: [
+        { label: 'Tipos de matrícula', route: '/matriculas' },
+        { label: 'Sección en inicio', route: '/inicio', fragment: 'matricula' }
+      ]
     },
     { label: 'CONTACTENOS', route: '/contacto' },
     { label: 'ADMIN', route: '/administracion' }

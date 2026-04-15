@@ -6,13 +6,23 @@
   }
 
   <mat-form-field appearance="outline" class="full">
+    <mat-label>Título</mat-label>
+    <input
+      matInput
+      [(ngModel)]="titulo"
+      name="titulo"
+      placeholder="Encabezado en la portada (arriba de la imagen)"
+      autocomplete="off" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full">
     <mat-label>Descripción</mat-label>
     <textarea
       matInput
       rows="3"
       [(ngModel)]="descripcion"
       name="descripcion"
-      placeholder="Texto que verá el usuario en la portada"></textarea>
+      placeholder="Texto complementario debajo de la imagen en la portada"></textarea>
   </mat-form-field>
 
   <div class="file-row">

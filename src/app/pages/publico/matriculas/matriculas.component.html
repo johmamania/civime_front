@@ -1,0 +1,67 @@
+<main class="matriculas-page">
+  <section class="matriculas-hero">
+    <div class="container matriculas-hero-inner">
+      <p class="matriculas-eyebrow">Admisión</p>
+      <h1>Tipos de matrícula</h1>
+      <p class="matriculas-lead">
+        Conoce las modalidades de inscripción en
+        <strong>{{ datos.nombreCorto }}</strong>. Elige la que corresponda a tu
+        situación y completa los pasos en secretaría o a través de los canales
+        indicados en
+        <a routerLink="/contacto">contacto</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="matriculas-body" aria-labelledby="matriculas-tipos-title">
+    <div class="container">
+      <h2 id="matriculas-tipos-title" class="matriculas-section-title">
+        Modalidades disponibles
+      </h2>
+      <p class="matriculas-section-sub">
+        Detalle orientativo. Los requisitos finales los confirma secretaría
+        académica según el programa y el calendario del ciclo.
+      </p>
+
+      <div class="matriculas-grid">
+        @for (t of tipos; track t.id) {
+          <article
+            class="matricula-card"
+            [class.matricula-card--nueva]="t.variante === 'nueva'"
+            [class.matricula-card--continua]="t.variante === 'continua'"
+            [class.matricula-card--clasificacion]="t.variante === 'clasificacion'"
+            [class.matricula-card--especial]="t.variante === 'especial'">
+            <header class="matricula-card__head">
+              <span class="matricula-card__badge">{{ t.etiqueta }}</span>
+              <h3 class="matricula-card__title">{{ t.titulo }}</h3>
+            </header>
+            <p class="matricula-card__resumen">{{ t.resumen }}</p>
+            <h4 class="matricula-card__list-title">Requisitos y notas</h4>
+            <ul class="matricula-card__list">
+              @for (p of t.puntos; track p) {
+                <li>{{ p }}</li>
+              }
+            </ul>
+            <div class="matricula-card__action">
+              <button type="button" class="btn-mat btn-mat--primary btn-mat--matricular">
+                Matricularme
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+
+      <div class="matriculas-cta">
+        <p class="matriculas-cta__text">¿Necesitas ayuda con tu matrícula?</p>
+        <div class="matriculas-cta__actions">
+          <a routerLink="/contacto" class="btn-mat btn-mat--primary">
+            Escribirnos
+          </a>
+          <a routerLink="/inicio" fragment="matricula" class="btn-mat btn-mat--ghost">
+            Ver sección en inicio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -19,6 +19,15 @@ export class PublicoShellComponent {
   readonly datosCivime = CIVIME_DATOS;
   readonly menuItems: MenuItem[] = buildPublicMenuItems();
 
+  /** Enlace wa.me si `whatsappNumero` tiene dígitos suficientes. */
+  get whatsappHref(): string | null {
+    const n = String(this.datosCivime.whatsappNumero ?? '').replace(/\D/g, '');
+    if (n.length < 8) {
+      return null;
+    }
+    return `https://wa.me/${n}`;
+  }
+
   expandedMobileMenuIndex: number | null = null;
 
   private readonly mobileNavMaxPx = 720;

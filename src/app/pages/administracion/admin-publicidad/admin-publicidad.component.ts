@@ -44,9 +44,11 @@ export class AdminPublicidadComponent implements OnInit {
     if (!q) {
       return this.lista;
     }
-    return this.lista.filter((p) =>
-      p.descripcion.toLowerCase().includes(q)
-    );
+    return this.lista.filter((p) => {
+      const desc = (p.descripcion || '').toLowerCase();
+      const tit = (p.titulo || '').toLowerCase();
+      return desc.includes(q) || tit.includes(q);
+    });
   }
 
   ngOnInit(): void {

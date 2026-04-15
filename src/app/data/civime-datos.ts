@@ -13,6 +13,11 @@ export const CIVIME_DATOS = {
   /** Dominio público (sin protocolo) para mostrar en cabecera. */
   dominioWeb: 'civime.edu.pe',
   telefono: '(01) 219-0600',
+  /**
+   * Solo dígitos con código de país (ej. 51 + celular).
+   * Dejar vacío para ocultar el botón flotante de WhatsApp.
+   */
+  whatsappNumero: '51987654321',
   /** Vacío si no aplica; ej. "3188 — 3189". */
   anexos: '',
   /** Av. Arequipa, corazón del centro de Lima (Cercado). */

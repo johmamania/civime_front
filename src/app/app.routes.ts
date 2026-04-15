@@ -6,6 +6,7 @@ import { InicioComponent } from './pages/publico/inicio/inicio.component';
 import { PublicoShellComponent } from './pages/publico/publico-shell.component';
 import { NosotrosComponent } from './pages/publico/nosotros/nosotros.component';
 import { ContactoComponent } from './pages/publico/contacto/contacto.component';
+import { MatriculasComponent } from './pages/publico/matriculas/matriculas.component';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,7 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'inicio' },
       { path: 'inicio', component: InicioComponent },
       { path: 'nosotros', component: NosotrosComponent },
+      { path: 'matriculas', component: MatriculasComponent },
       { path: 'contacto', component: ContactoComponent }
     ]
   },

@@ -9,12 +9,14 @@
             presencial. Inicio de clases todos los meses.
           </p>
           <div class="hero-actions">
-            <a href="#matricula" class="btn btn-primary">Matricularme</a>
-            <a href="#programas" class="btn btn-secondary">Ver Programas</a>
+            <a href="/inicio" class="btn btn-primary">Matricularme</a>
+            <a href="/inicio" class="btn btn-secondary">Ver Programas</a>
           </div>
         </div>
         <div class="hero-card publicidad-card">
-         <!-- <h3>Publicidad</h3>-->
+          <h3 *ngIf="publicidadCabecera" class="publicidad-titulo">
+            {{ publicidadCabecera }}
+          </h3>
 
           <div class="publicidad-carousel">
             <button
@@ -34,7 +36,7 @@
                 class="publicidad-imagen"
                 [@publicidadImagen]="publicidadActualIndex"
                 [src]="publicidadActual.img"
-                [alt]="publicidadActual.descripcion"
+                [alt]="publicidadActual.descripcion?.trim() || publicidadCabecera"
                 loading="eager"
                 decoding="async" />
             </div>
@@ -52,7 +54,9 @@
             </button>
           </div>
 
-          <p class="publicidad-descripcion">{{ publicidadActual.descripcion }}</p>
+          <p *ngIf="publicidadTextoSecundario" class="publicidad-descripcion">
+            {{ publicidadTextoSecundario }}
+          </p>
         </div>
       </div>
     </section>

@@ -73,6 +73,13 @@
   display: block;
 }
 
+.cell-titulo {
+  max-width: 200px;
+  font-weight: 600;
+  word-break: break-word;
+  color: #0f172a;
+}
+
 .cell-desc {
   max-width: 280px;
   word-break: break-word;

@@ -1,5 +1,5 @@
 export interface ProgramaItem {
-  titulo: string;
+  titulo?: string;
   codigo: string;
   descripcion: string;
   ruta: string;

@@ -12,6 +12,7 @@ import {
 import { PublicidadApiService } from '../../../services/publicidad-api.service';
 
 interface PublicidadItem {
+  titulo?: string;
   descripcion: string;
   img: string;
 }
@@ -29,16 +30,28 @@ const PUBLICIDAD_ROTACION_MS = 5000;
 /** Imágenes y textos locales si el backend no responde o no hay activas. */
 const PUBLICIDADES_PREDETERMINADAS: PublicidadItem[] = [
   {
-    descripcion: 'Matricula abierta para todos los niveles',
+    titulo: 'Matricula abierta para todos los niveles',
+    descripcion:
+      'Inscribete hoy y elige modalidad online o presencial en el centro de Lima.',
     img: 'assets/images/publicidad/image1.png'
   },
   {
-    descripcion: 'Nuevos horarios virtuales y presenciales',
+    titulo: 'Nuevos horarios virtuales y presenciales',
+    descripcion:
+      'Consulta fechas flexibles y el programa que mejor se adapte a tu rutina.',
     img: 'assets/images/publicidad/image2.png'
   },
   {
-    descripcion: 'Examenes de clasificacion disponibles',
+    titulo: 'Examenes de clasificacion disponibles',
+    descripcion:
+      'Evalua tu nivel y ubicate en el grupo adecuado antes de iniciar clases.',
     img: 'assets/images/publicidad/image3.png'
+  },
+  {
+    titulo: 'Sede principal de Lima',
+    descripcion:
+      'Visitanos en el centro de la ciudad; te atendemos con gusto.',
+    img: 'assets/images/publicidad/civime_sede.jpg'
   }
 ];
 
@@ -87,6 +100,24 @@ export class InicioComponent implements OnInit, OnDestroy {
     return this.publicidades[this.publicidadActualIndex];
   }
 
+  /** Encabezado: título o, si no hay, la descripción. */
+  get publicidadCabecera(): string {
+    const a = this.publicidadActual;
+    const t = a.titulo?.trim();
+    return t || a.descripcion?.trim() || '';
+  }
+
+  /** Texto debajo de la imagen solo si aporta más que el encabezado. */
+  get publicidadTextoSecundario(): string {
+    const a = this.publicidadActual;
+    const t = a.titulo?.trim();
+    const d = a.descripcion?.trim() || '';
+    if (!t) {
+      return '';
+    }
+    return d && d !== t ? d : '';
+  }
+
   get publicidadPuedeNavegar(): boolean {
     return this.publicidades.length > 1;
   }
@@ -133,6 +164,7 @@ export class InicioComponent implements OnInit, OnDestroy {
       next: (rows) => {
         if (rows.length > 0) {
           this.publicidades = rows.map((r) => ({
+            titulo: r.titulo?.trim() || undefined,
             descripcion: r.descripcion,
             img: this.publicidadApi.urlImagenAbsoluta(r)
           }));

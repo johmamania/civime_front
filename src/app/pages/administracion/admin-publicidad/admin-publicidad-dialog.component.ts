@@ -27,6 +27,7 @@ export class AdminPublicidadDialogComponent {
   private readonly dialogRef = inject(MatDialogRef<AdminPublicidadDialogComponent>);
   private readonly api = inject(PublicidadApiService);
 
+  titulo = '';
   descripcion = '';
   estado = true;
   archivo: File | null = null;
@@ -55,6 +56,7 @@ export class AdminPublicidadDialogComponent {
       return;
     }
     const fd = new FormData();
+    fd.append('titulo', this.titulo.trim());
     fd.append('descripcion', this.descripcion.trim());
     fd.append('estado', this.estado ? '1' : '0');
     fd.append('archivo', this.archivo, this.archivo.name);
