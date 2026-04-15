@@ -65,6 +65,18 @@
   font-size: 0.88rem;
 }
 
+.administracion-user-actions {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+}
+
+.administracion-logout-btn {
+  margin-left: 10px;
+  background-color: #d8231d !important;
+  color: #ffffff !important;
+}
+
 .administracion-user-label {
   color: #64748b;
 }

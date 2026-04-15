@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PublicidadApiService } from '../../../services/publicidad-api.service';
 import { PublicidadApiDto } from '../../../models/publicidad-api.model';
 import { AdminPublicidadDialogComponent } from './dialog-create/admin-publicidad-dialog.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-publicidad',
@@ -131,20 +132,31 @@ export class AdminPublicidadComponent implements OnInit {
   }
 
   eliminar(p: PublicidadApiDto): void {
-    if (!confirm('¿Eliminar esta publicidad y su imagen en Supabase Storage?')) {
-      return;
-    }
-    this.accionId = p.id;
-    this.api.eliminar(p.id).subscribe({
-      next: () => {
-        this.accionId = null;
-        this.cargar();
-      },
-      error: (err) => {
-        this.accionId = null;
-        const m = err?.error?.message;
-        alert(typeof m === 'string' ? m : 'No se pudo eliminar.');
+    Swal.fire({
+      title: 'Confirmar eliminación',
+      text: '¿Eliminar esta publicidad y su imagen en Supabase Storage?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (!result.isConfirmed) {
+        return;
       }
+      this.accionId = p.id;
+      this.api.eliminar(p.id).subscribe({
+        next: () => {
+          this.accionId = null;
+          this.cargar();
+          Swal.fire('Eliminado', 'La publicidad se eliminó correctamente.', 'success');
+        },
+        error: (err) => {
+          this.accionId = null;
+          const m = err?.error?.message;
+          Swal.fire('Error', typeof m === 'string' ? m : 'No se pudo eliminar.', 'error');
+        }
+      });
     });
   }
 }

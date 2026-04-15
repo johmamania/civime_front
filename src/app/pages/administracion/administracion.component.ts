@@ -6,12 +6,14 @@ import { AdminPublicidadComponent } from './admin-publicidad/admin-publicidad.co
 import { AdminCursosComponent } from './admin-cursos/admin-cursos.component';
 import { AdminEstadisticaComponent } from './admin-estadistica/admin-estadistica.component';
 import { AuthSupabaseService } from '../../services/auth-supabase.service';
+import { MaterialModule } from '../../material/material.module';
 
 @Component({
   selector: 'app-administracion',
   standalone: true,
   imports: [
     CommonModule,
+    MaterialModule,
     RouterLink,
     MatTabsModule,
     AdminPublicidadComponent,
