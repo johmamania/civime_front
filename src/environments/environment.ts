@@ -3,9 +3,8 @@ export const environment = {
   HOST: 'https://civime.ejercito.mil.pe/backend-civime',
   /** Supabase: pegue aquí la URL del proyecto y la clave anon (Settings → API). */
   supabase: {
-    url: 'https://TU-PROYECTO.supabase.co',
-    anonKey: 'TU_SUPABASE_ANON_KEY',
-    /** Debe coincidir con el bucket creado en Storage (p. ej. publicidad). */
+    url: 'https://dembesfhitqqeitfiwbz.supabase.co',
+    anonKey: 'sb_publishable_Si4HXe2P_uTRjJw8nTq2ig_J2CZKsYr',
     publicidadBucket: 'publicidad',
   },
   TOKEN_NAME: 'access_token',
