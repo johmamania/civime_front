@@ -70,14 +70,8 @@
           </p>
         </header>
         <div class="cards programas-cards">
-          <article
-            class="card"
-            *ngFor="let programa of programas"
-            [attr.data-programa]="programa.codigo">
-            <h3>{{ programa.titulo }}</h3>
-            <p>{{ programa.descripcion }}</p>
-            <a [routerLink]="programa.ruta">Mas informacion</a>
-          </article>
+        <!-- aqui los cursos de portada desde supabase -->
+        <app-cursos [embebido]="true"></app-cursos>
         </div>
       </div>
     </section>

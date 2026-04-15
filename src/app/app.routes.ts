@@ -7,6 +7,8 @@ import { PublicoShellComponent } from './pages/publico/publico-shell.component';
 import { NosotrosComponent } from './pages/publico/nosotros/nosotros.component';
 import { ContactoComponent } from './pages/publico/contacto/contacto.component';
 import { MatriculasComponent } from './pages/publico/matriculas/matriculas.component';
+import { CursosComponent } from './pages/publico/cursos/cursos.component';
+import { NuevaMatriculaComponent } from './pages/publico/matriculas/nueva-matricula/nueva-matricula.component';
 import { adminSupabaseGuard } from './guard/admin-supabase.guard';
 
 export const routes: Routes = [
@@ -18,6 +20,8 @@ export const routes: Routes = [
       { path: 'inicio', component: InicioComponent },
       { path: 'nosotros', component: NosotrosComponent },
       { path: 'matriculas', component: MatriculasComponent },
+      { path: 'matricula-nuevo-registro', component: NuevaMatriculaComponent },
+      { path: 'cursos', component: CursosComponent },
       { path: 'contacto', component: ContactoComponent }
     ]
   },

@@ -23,13 +23,16 @@ export function buildPublicMenuItems(): MenuItem[] {
         { label: 'Visión', route: '/nosotros', fragment: 'vision' }
       ]
     },
+    { label: 'CURSOS', route: '/cursos' },
+    /*
     {
       label: 'CURSOS',
       submenus: CURSOS_PORTADA.map((p) => ({
         label: p.titulo,
         route: p.ruta
       }))
-    },
+    },*/
+    /*
     {
       label: 'CURSOS VIRTUALES',
       submenus: [{ label: 'Cursos Virtuales', route: '/inicio' }]
@@ -37,15 +40,15 @@ export function buildPublicMenuItems(): MenuItem[] {
     {
       label: 'CURSOS EXTRACURRICULARES',
       submenus: [{ label: 'Cursos Extracurriculares', route: '/inicio' }]
-    },
+    },*/
     {
       label: 'MATRÍCULAS',
       submenus: [
         { label: 'Tipos de matrícula', route: '/matriculas' },
-        { label: 'Sección en inicio', route: '/inicio', fragment: 'matricula' }
+        { label: 'Nueva matrícula', route: '/matricula-nuevo-registro', fragment: 'matricula' }
       ]
     },
     { label: 'CONTACTENOS', route: '/contacto' },
-    { label: 'ADMIN', route: '/administracion' }
+    { label: 'Login Admin', route: '/administracion' }
   ];
 }

@@ -6,6 +6,7 @@ export const environment = {
     url: 'https://dembesfhitqqeitfiwbz.supabase.co',
     anonKey: 'sb_publishable_Si4HXe2P_uTRjJw8nTq2ig_J2CZKsYr',
     publicidadBucket: 'publicidad',
+    cursosBucket: 'cursos'
   },
   TOKEN_NAME: 'access_token',
   RETRY: 0,

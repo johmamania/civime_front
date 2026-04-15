@@ -1,0 +1,44 @@
+<section class="cursos-section" [class.cursos-section--embebido]="embebido">
+  <div class="container" [class.container--embebido]="embebido">
+    @if (!embebido) {
+      <header class="cursos-header">
+        <h1>Cursos</h1>
+        <p>Programas disponibles con información actualizada .</p>
+      </header>
+    }
+
+      @if (error) {
+        <p class="cursos-error">{{ error }}</p>
+      }
+
+      @if (loading) {
+        <p class="cursos-loading">Cargando cursos...</p>
+      } @else {
+        <div class="cursos-grid">
+          @for (curso of cursos; track curso.id) {
+            <article class="curso-card">
+              <img
+                class="curso-img"
+                [src]="imagenCurso(curso)"
+                [alt]="curso.titulo"
+                loading="lazy" />
+              <div class="curso-body">
+                <h3>{{ curso.titulo }}</h3>
+                <p>{{ curso.descripcion }}</p>
+                <button
+                  type="button"
+                  mat-flat-button
+                  color="primary"
+                  class="curso-btn"
+                  (click)="abrirDetalle(curso.id)">
+                  Mas informacion
+                </button>
+              </div>
+            </article>
+          } @empty {
+            <p class="cursos-empty">No hay cursos activos por mostrar.</p>
+          }
+        </div>
+      }
+  </div>
+</section>

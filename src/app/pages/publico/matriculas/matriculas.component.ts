@@ -61,19 +61,6 @@ export class MatriculasComponent {
         'Matrícula al nivel asignado según puntaje y criterios del centro.'
       ],
       variante: 'clasificacion'
-    },
-    {
-      id: 'especial',
-      etiqueta: 'Institucional',
-      titulo: 'Matrícula institucional o grupal',
-      resumen:
-        'Programas bajo convenio (empresas, entidades públicas o grupos cerrados).',
-      puntos: [
-        'Comunicación formal por la oficina de convenios o coordinación académica.',
-        'Plazos y documentación según el contrato o anexo vigente.',
-        'Modalidad presencial, virtual o mixta según lo acordado.'
-      ],
-      variante: 'especial'
     }
   ];
 }

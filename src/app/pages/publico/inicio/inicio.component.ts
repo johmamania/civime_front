@@ -10,6 +10,7 @@ import {
   type ProgramaItem
 } from '../../../data/cursos-portada';
 import { PublicidadApiService } from '../../../services/publicidad-api.service';
+import { CursosComponent } from '../cursos/cursos.component';
 
 interface PublicidadItem {
   titulo?: string;
@@ -58,7 +59,7 @@ const PUBLICIDADES_PREDETERMINADAS: PublicidadItem[] = [
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, CursosComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css',
   animations: [

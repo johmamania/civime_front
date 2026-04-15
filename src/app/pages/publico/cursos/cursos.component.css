@@ -1,0 +1,162 @@
+:host {
+  display: block;
+}
+
+.cursos-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  min-height: 70vh;
+  padding: 2.25rem 0 3rem;
+}
+
+.container {
+  width: min(1300px, 95%);
+  margin: 0 auto;
+}
+
+.cursos-section--embebido {
+  background: transparent;
+  min-height: auto;
+  padding: 0;
+}
+
+.container--embebido {
+  width: 100%;
+  margin: 0;
+}
+
+.cursos-header h1 {
+  margin: 0 0 0.4rem;
+  color: #0f172a;
+  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+}
+
+.cursos-header p {
+  margin: 0 0 1.2rem;
+  color: #64748b;
+}
+
+.cursos-error {
+  color: #b91c1c;
+  margin: 0 0 1rem;
+}
+
+.cursos-loading,
+.cursos-empty {
+  color: #475569;
+}
+
+.cursos-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-items: start;
+}
+
+.curso-card {
+  position: relative;
+  border-radius: 1rem;
+  width: min(100%, 300px);
+  min-width: 200px;
+  min-height: 350px;
+  max-height: 455px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.curso-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ea580c, #f97316);
+}
+
+@media (max-width: 1200px) {
+  .cursos-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .cursos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .cursos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .curso-card {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.curso-img {
+  width: 100%;
+  height: 170px;
+  padding: 10px;
+  box-sizing: border-box;
+  object-fit: contain;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.curso-body {
+  padding: 0.95rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.curso-body h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.curso-body p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.5;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+
+.curso-btn {
+  align-self: center;
+  width: 90%;
+  min-height: 42px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #f8d07a !important;
+  background: #fff8ea !important;
+  color: #a16207 !important;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.curso-btn::after {
+  content: ' \2192';
+}
+
+.curso-btn:hover {
+  background: #ffefcc !important;
+  border-color: #f5be4f !important;
+  color: #92400e !important;
+}

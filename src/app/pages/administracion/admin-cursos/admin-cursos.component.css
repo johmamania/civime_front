@@ -2,8 +2,150 @@
   padding: 1rem 0.25rem 1.5rem;
 }
 
-.admin-placeholder {
-  margin: 0.75rem 0 0;
+.toolbar-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.buscar-field {
+  flex: 1 1 220px;
+  min-width: 180px;
+}
+
+.lista-error {
+  color: #b91c1c;
+  font-size: 0.92rem;
+  margin: 0 0 1rem;
+}
+
+.lista-loading {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.tabla-wrap {
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.65rem;
+  background: #fafafa;
+}
+
+.curso-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.curso-table th,
+.curso-table td {
+  padding: 0.55rem 0.65rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.curso-table th {
+  background: #f1f5f9;
+  font-weight: 700;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.curso-table tr:last-child td {
+  border-bottom: none;
+}
+
+.col-n {
+  width: 2.5rem;
+  text-align: center;
+}
+
+.col-thumb {
+  width: 56px;
+}
+
+.thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 0.35rem;
+  border: 1px solid #e2e8f0;
+  display: block;
+}
+
+.cell-titulo {
+  max-width: 180px;
+  font-weight: 600;
+  word-break: break-word;
+  color: #0f172a;
+}
+
+.cell-desc {
+  max-width: 280px;
+  word-break: break-word;
+  color: #1e293b;
+}
+
+.col-fecha {
+  white-space: nowrap;
   color: #64748b;
-  line-height: 1.5;
+  font-size: 0.84rem;
+}
+
+.col-user {
+  max-width: 120px;
+  word-break: break-word;
+  color: #475569;
+  font-size: 0.84rem;
+}
+
+.col-estado {
+  white-space: nowrap;
+}
+
+.estado-chip {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.estado-activo {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.estado-inactivo {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.col-acciones {
+  width: 65px;
+  min-width: 65px;
+  max-width: 65px;
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.2rem;
+}
+
+.col-acciones button {
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+.empty-msg {
+  text-align: center;
+  color: #64748b;
+  padding: 1.5rem !important;
 }
